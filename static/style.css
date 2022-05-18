@@ -1,0 +1,16 @@
+.marked-title {
+  text-align: center;
+  background-color: whitesmoke;
+}
+
+.alert-message {
+  background-color: lightblue;
+}
+
+.alert-info {
+  background-color: cornsilk;
+}
+
+.alert-error {
+  background-color: indianred;
+}

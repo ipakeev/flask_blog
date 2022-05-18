@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+  <div class="container d-flex justify-content-center">
+    <form class="px-4 py-3" method="post" action="{{ url_for('main_app.login') }}">
+      {{ form.csrf_token }}
+      <div class="mb-3">
+        {{ form.username.label }}
+        <p>{{ form.username }}</p>
+      </div>
+      <div class="mb-3">
+        {{ form.password.label }}
+        <p>{{ form.password }}</p>
+      </div>
+      <div class="mb-3">{{ form.remember }} {{ form.remember.label }}</div>
+      <button type="submit" class="btn btn-primary">Войти</button>
+    </form>
+  </div>
+
+{% endblock %}
+
+

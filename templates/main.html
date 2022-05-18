@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <h2 class="marked-title">Варианты реализаций умного дома:</h2>
+  <br>
+  <div class="container-fluid">
+    <div class="row">
+
+      {% for post in posts %}
+        <div class="col-md-3 card" style="width: 18rem; margin: 2rem;">
+          <img src="{{ post.preview_image }}" class="card-img-top" alt="{{ post.title }}">
+          <div class="card-body">
+            <p class="card-text">{{ post.title }}</p>
+            <a href="{{ url_for('main_app.posts', post_id=post.id) }}" class="btn btn-primary">Подробнее</a>
+          </div>
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+{% endblock %}

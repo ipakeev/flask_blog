@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <div class="container-xl">
+
+    {% if user.is_admin %}
+      <a href="{{ url_for('admin_app.add_data') }}">Добавить данные</a>
+    {% endif %}
+
+    <hr>
+
+    <p>Мои посты:</p>
+    {% if posts %}
+      <ul>
+        {% for post in posts %}
+          <li><a href="{{ url_for('main_app.posts', post_id=post.id) }}">{{ post.title }}</a></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>- пока пусто</p>
+    {% endif %}
+
+    <hr>
+
+    <p>Количество комментариев: {{ n_comments }}</p>
+
+  </div>
+{% endblock %}

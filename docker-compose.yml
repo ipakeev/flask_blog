@@ -1,0 +1,39 @@
+version: "4.7.0"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      SECRET_KEY: "adsdfjalskdjgaldjgdlaeijg"
+      DATABASE_URI: "postgresql+psycopg2://postgres:postgres@postgres:5432/blog"
+    ports:
+      - 5000:5000
+    networks:
+      - blog
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: blog
+    ports:
+      - "5432:5432"
+    networks:
+      - blog
+    volumes:
+      - ./volumes:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d blog -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+networks:
+  blog:
+    driver: bridge
